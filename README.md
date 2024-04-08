@@ -1,17 +1,27 @@
 # Simple Redirect Container
 
-## How to run
+Simple container for redirect all request but health check path to specific url.
+
+## Get started
+
+You can run by docker-compose.
 
 ```shell
-docker compose up
+docker compose up -d
 ```
 
-## Set to k8s
+and access to `http://localhost:8080` you will be redirected to `https://www.google.com`
 
-There are 2 things you need to aware of:
+When you access to `http://localhost:8080/health` you will get `200 OK` response.
 
-1. Set envoriment variable `REDIRECT_URL` in `k8s/deployment.yaml`
+## Run in k8s
 
-2. Set health check path in `k8s/deployment.yaml`
+You can use this as pod in k8s.
 
-You can see example in `example/k8s/deployment.yaml`
+full example is [here](https://github.com/Ko1103/simple-redirect/blob/main/example/k8s/deploy.yaml)
+
+3 steps to run in k8s:
+
+1. Set container: `michealko/simple-redirect:latest`
+2. Set envoriment variable `REDIRECT_URL`. e.g. `https://www.google.com`.
+3. Set health check path. e.g. `/health`
