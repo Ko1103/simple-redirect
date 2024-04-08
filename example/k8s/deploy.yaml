@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redirect-app
+spec:
+  selector:
+    matchLabels:
+      app: redirect-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redirect-app
+    spec:
+      containers:
+        - name: redirect-app
+          image: michealko/simple-redirect:latest
+          command: ["/bin/sh"]
+          args: ["-c", "npm run start"]
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REDIRECT_URL
+              value: "https://www.google.com"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 5
+            successThreshold: 1
