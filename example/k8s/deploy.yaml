@@ -15,8 +15,6 @@ spec:
       containers:
         - name: redirect-app
           image: michealko/simple-redirect:latest
-          command: ["/bin/sh"]
-          args: ["-c", "npm run start"]
           ports:
             - containerPort: 8080
           env:
