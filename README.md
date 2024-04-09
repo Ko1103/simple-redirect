@@ -25,3 +25,19 @@ full example is [here](https://github.com/Ko1103/simple-redirect/blob/main/examp
 1. Set container: `michealko/simple-redirect:latest`
 2. Set envoriment variable `REDIRECT_URL`. e.g. `https://www.google.com`.
 3. Set health check path. e.g. `/health`
+
+# Troubleshooting
+
+If ingress health check is failed, it may be caused by service health check path. Please check the health check path in your ingress configuration.
+
+For example, if you use GCP Ingress, use BackendConfig to set health check path.
+
+```yaml
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: simple-redirect-backendconfig
+spec:
+  healthCheck:
+    requestPath: /health
+```
