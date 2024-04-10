@@ -30,7 +30,7 @@ full example is [here](https://github.com/Ko1103/simple-redirect/blob/main/examp
 
 If ingress health check is failed, it may be caused by service health check path. Please check the health check path in your ingress configuration.
 
-For example, if you use GCP Ingress, use BackendConfig to set health check path.
+For example, if you use GCP, use BackendConfig to set health check path.
 
 ```yaml
 apiVersion: cloud.google.com/v1
