@@ -2,4 +2,8 @@
 **/.dockerignore
 **/docker-compose.yml
 **/*.md
+<<<<<<< HEAD
 .env
+=======
+example
+>>>>>>> 297b9033ee465ef738c77976fc4658c8fef03cc2
